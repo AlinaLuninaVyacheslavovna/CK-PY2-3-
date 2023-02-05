@@ -22,7 +22,7 @@ class Book:
 
 
 class PaperBook(Book):
-    """ Дочерний класс книги. """
+    """ Дочерний класс книги. Бумажная книга. """
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
         self.pages = pages
@@ -30,7 +30,7 @@ class PaperBook(Book):
     @property
     def pages(self) -> int:
         """Возвращает количество страниц в книге."""
-        return self._pages
+        return self.pages
 
     @pages.setter
     def pages(self, new_pages: int) -> None:
@@ -39,31 +39,37 @@ class PaperBook(Book):
             raise TypeError("Количество страниц должно быть типа int")
         if new_pages <= 0:
             raise ValueError("Количество страниц должно быть положительным числом")
-        self._pages = new_pages
+        self.pages = new_pages
 
     def __str__(self):
         return f"Книга {self.name}. Автор {self.author}"
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, pages={self.pages!r})"
+
 
 class AudioBook(Book):
-    """ Дочерний класс книги. """
+    """ Дочерний класс книги. Аудиокнига. """
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
         self.duration = duration
 
     @property
-    def duration(self) -> int:
+    def duration(self) -> float:
         """Возвращает продолжительность аудиокниги."""
-        return self._pages
+        return self.duration
 
     @duration.setter
     def duration(self, new_duration: float) -> None:
-        """Устанавливает количество страниц в книге."""
+        """Устанавливает продолжительность аудиокниги."""
         if not isinstance(new_duration, float):
             raise TypeError("Продолжительность аудиокниги должна быть типа float")
         if new_duration <= 0:
             raise ValueError("Продолжительность аудиокниги должна быть положительным числом")
-        self._duration = new_duration
+        self.duration = new_duration
 
     def __str__(self):
         return f"Книга {self.name}. Автор {self.author}"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration!r})"
