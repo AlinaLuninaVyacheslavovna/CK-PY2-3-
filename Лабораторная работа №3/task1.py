@@ -30,7 +30,7 @@ class PaperBook(Book):
     @property
     def pages(self) -> int:
         """Возвращает количество страниц в книге."""
-        return self.pages
+        return self._pages
 
     @pages.setter
     def pages(self, new_pages: int) -> None:
@@ -39,10 +39,7 @@ class PaperBook(Book):
             raise TypeError("Количество страниц должно быть типа int")
         if new_pages <= 0:
             raise ValueError("Количество страниц должно быть положительным числом")
-        self.pages = new_pages
-
-    def __str__(self):
-        return f"Книга {self.name}. Автор {self.author}"
+        self._pages = new_pages
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, pages={self.pages!r})"
@@ -57,7 +54,7 @@ class AudioBook(Book):
     @property
     def duration(self) -> float:
         """Возвращает продолжительность аудиокниги."""
-        return self.duration
+        return self._duration
 
     @duration.setter
     def duration(self, new_duration: float) -> None:
@@ -66,10 +63,7 @@ class AudioBook(Book):
             raise TypeError("Продолжительность аудиокниги должна быть типа float")
         if new_duration <= 0:
             raise ValueError("Продолжительность аудиокниги должна быть положительным числом")
-        self.duration = new_duration
-
-    def __str__(self):
-        return f"Книга {self.name}. Автор {self.author}"
+        self._duration = new_duration
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration!r})"
